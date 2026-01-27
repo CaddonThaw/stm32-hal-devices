@@ -43,12 +43,14 @@ static int stm32_i2c_write(unsigned char slave_addr,
                            unsigned char length,
                            unsigned char const *data)
 {
+#if DEVICE_MPU6050
     // motion driver 使用 7-bit 地址（例如 0x68），HAL 使用 8-bit 地址
     const uint16_t devAddr = ((uint16_t)slave_addr) << 1;
     if (HAL_I2C_Mem_Write(&MPU6050_I2C, devAddr, reg_addr, I2C_MEMADD_SIZE_8BIT,
                           (uint8_t *)data, length, HAL_MAX_DELAY) != HAL_OK) {
         return -1;
     }
+#endif
     return 0;
 }
 
@@ -57,11 +59,13 @@ static int stm32_i2c_read(unsigned char slave_addr,
                           unsigned char length,
                           unsigned char *data)
 {
+#if DEVICE_MPU6050
     const uint16_t devAddr = ((uint16_t)slave_addr) << 1;
     if (HAL_I2C_Mem_Read(&MPU6050_I2C, devAddr, reg_addr, I2C_MEMADD_SIZE_8BIT,
                          (uint8_t *)data, length, HAL_MAX_DELAY) != HAL_OK) {
         return -1;
     }
+#endif
     return 0;
 }
 

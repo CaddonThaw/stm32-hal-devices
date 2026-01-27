@@ -52,7 +52,7 @@ void Encoder_Read(float *left, float *right)
 
     last_tick = now_tick;
 
-    distance_per_pulse_mm = (ENCODER_WHEEL_DIAMETER_MM * ENCODER_PI) / ENCODER_PULSE_PER_REV;
+    distance_per_pulse_mm = (ENCODER_WHEEL_DIAMETER * ENCODER_PI) / ENCODER_PULSE_PER_REV;
 
     *left = (count_left * distance_per_pulse_mm) / dt;
     *right = (count_right * distance_per_pulse_mm) / dt;

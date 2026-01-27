@@ -34,11 +34,6 @@
  * get_ms(unsigned long *count)
  */
 
-static void stm32_delay_ms(unsigned long num_ms)
-{
-    HAL_Delay((uint32_t)num_ms);
-}
-
 static void stm32_get_ms(unsigned long *count)
 {
     if (count) {
